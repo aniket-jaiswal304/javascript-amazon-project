@@ -1,5 +1,5 @@
 .amazon-header {
-    background-color: black;
+    background-color: rgb(19, 25, 33);
     color: white;
     padding-left: 15px;
     padding-right: 15px;
@@ -79,7 +79,7 @@
 }
 
 .search-button {
-    background-color: rgb(254, 188, 105);
+    background-color: rgb(254, 189, 105);
     border: none;
     width: 45px;
     height: 40px;
