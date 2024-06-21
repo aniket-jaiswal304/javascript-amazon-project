@@ -3,11 +3,13 @@ import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import '../../data/cart.js';
 
 export function renderOrderSummary() {
     let cartSummaryHTML = '';
 
-    cart.forEach((cartItem) => {
+    const cart = new Cart('cartItems');
+    cart.cartItem.forEach((cartItem) => {
         const productId = cartItem.productId;
         const matchingProduct = getProduct(productId);
 
