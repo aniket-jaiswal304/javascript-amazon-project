@@ -1,9 +1,8 @@
-import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';
 import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
-import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary() {
     let cartSummaryHTML = '';
@@ -34,9 +33,9 @@ export function renderOrderSummary() {
                             ${matchingProduct.name}
                         </div>
                         <div class="product-price">
-                            &#36;${formatCurrency(matchingProduct.priceCents)}
+                            ${matchingProduct.getPrice()}
                         </div>
-                        <div class="product-quantity product-quantity-${matchingProduct.id} js-product-quantity-${matchingProduct.id}">
+                        <div class="product-quantity js-product-quantity-${matchingProduct.id}">
                             <span>
                                 Quantity&#58; <span class="quantity-label">${cartItem.quantity}</span>
                             </span>
@@ -121,6 +120,6 @@ export function renderOrderSummary() {
                 updateDeliveryOption(productId, deliveryOptionId);
                 renderOrderSummary();
                 renderPaymentSummary();
-            })
+            });
         });
 }
