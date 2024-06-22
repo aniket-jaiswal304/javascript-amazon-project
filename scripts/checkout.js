@@ -4,18 +4,13 @@ import {loadProducts} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
 
 Promise.all([
-    new Promise((resolve) => {
-        loadProducts(() => {
-            resolve();
-        });
-    
-    }),
+    loadProducts(),
     new Promise((resolve) => {
         loadCart(() => {
             resolve();
         });
     })
-    
+
 ]).then(() => {
     renderOrderSummary();
     renderPaymentSummary();
