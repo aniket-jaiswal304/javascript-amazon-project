@@ -83,3 +83,14 @@ class Cart {
     }
 }
 
+export function loadCart(renderCartGrid) {
+    const xhr = new XMLHttpRequest();
+  
+    xhr.addEventListener('load', () => {
+        console.log(xhr.response);
+        renderCartGrid();
+      });
+  
+    xhr.open('GET', 'https://supersimplebackend.dev/cart');
+    xhr.send();
+  }
