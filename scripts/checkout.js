@@ -4,13 +4,18 @@ import {loadProducts} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
 
 async function loadPage() {
-    await loadProducts();
+    try {
+        await loadProducts();
 
-    await new Promise((resolve) => {
-        loadCart(() => {
-            resolve();
+        await new Promise((resolve) => {
+            loadCart(() => {
+                resolve();
+            });
         });
-    });
+    } catch(error) {
+        console.log('Unexpected error. Please try again later.');
+    }
+    
 
     renderOrderSummary();
     renderPaymentSummary();
