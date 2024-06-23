@@ -38,14 +38,16 @@ export default class Cart {
                 matchingItem = cartItem;
             }
         });
-    
+
+        const quantity = Number(document.querySelector(`.js-quantity-selector-${matchingItem.productId}`).value);
+
         if (matchingItem) {
-            matchingItem.quantity += 1;
+            matchingItem.quantity += quantity;
         } else {
             this.cartItems.push(
                 {
                     productId: productId,
-                    quantity: 1,
+                    quantity: quantity,
                     deliveryOptionId: '1'
                 }
             );
@@ -82,18 +84,6 @@ export default class Cart {
         this.saveToStorage();
     }
 }
-
-/*export function loadCart(renderCartGrid) {
-    const xhr = new XMLHttpRequest();
-  
-    xhr.addEventListener('load', () => {
-        console.log(xhr.response);
-        renderCartGrid();
-      });
-  
-    xhr.open('GET', 'https://supersimplebackend.dev/cart');
-    xhr.send();
-}*/
 
 export function loadCart() {
     return fetch('https://supersimplebackend.dev/cart');
