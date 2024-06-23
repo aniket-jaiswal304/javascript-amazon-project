@@ -50,7 +50,7 @@ class Clothing extends Product {
 
   extraInfoHTML() {
     return `
-      <a href ="${this.sizeChartLink}" target="_black">
+      <a href ="${this.sizeChartLink}" target="_blank">
         Size chart
       </a>
     `;
@@ -74,6 +74,6 @@ export function loadProducts() {
   }).catch(() => {
     console.log('Unexpected error. Please try again later.');
   });
-
+  
   return promise;
 }

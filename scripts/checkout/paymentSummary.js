@@ -1,12 +1,14 @@
+import Cart from '../../data/cart.js';
 import { getProduct } from '../../data/products.js';
 import { getDeliveryOption } from '../../data/deliveryOptions.js';
 import { formatCurrency } from '../utils/money.js';
-import { addOrder } from '../../data/order.js';
+import { addOrder } from '../../data/orders.js';
 
 export function renderPaymentSummary() {
+    const cart = new Cart('cart');
     let productPriceCents = 0;
     let shippingPriceCents = 0;
-    cart.forEach((cartItem) => {
+    cart.cartItems.forEach((cartItem) => {
         const product = getProduct(cartItem.productId);
         productPriceCents += product.priceCents * cartItem.quantity;
 
@@ -25,27 +27,37 @@ export function renderPaymentSummary() {
 
         <div class="payment-summary-row">
             <div>Items &#40;3&#41;&#58;</div>
-            <div class="payment-summary-money">&#36;${formatCurrency(productPriceCents)}</div>
+            <div class="payment-summary-money">
+                &#36;${formatCurrency(productPriceCents)}
+            </div>
         </div>
 
         <div class="payment-summary-row">
             <div>Shipping &amp; handling&#58;</div>
-            <div class="payment-summary-money">&#36;${formatCurrency(shippingPriceCents)}</div>
+            <div class="payment-summary-money">
+                &#36;${formatCurrency(shippingPriceCents)}
+            </div>
         </div>
 
         <div class="payment-summary-row subtotal-row">
             <div>Total before tax&#58;</div>
-            <div class="payment-summary-money">&#36;${formatCurrency(totalBeforeTaxCents)}</div>
+            <div class="payment-summary-money">
+                &#36;${formatCurrency(totalBeforeTaxCents)}
+            </div>
         </div>
 
         <div class="payment-summary-row">
             <div>Estimated tax &#40;10&#37;&#41;&#58;</div>
-            <div class="payment-summary-money">&#36;${formatCurrency(taxCents)}</div>
+            <div class="payment-summary-money">
+                &#36;${formatCurrency(taxCents)}
+            </div>
         </div>
 
         <div class="payment-summary-row total-row">
             <div>Order total&#58;</div>
-            <div class="payment-summary-money">&#36;${formatCurrency(totalCents)}</div>
+            <div class="payment-summary-money">
+                &#36;${formatCurrency(totalCents)}
+            </div>
         </div>
 
         <button class="place-order-button button-primary js-place-order">
@@ -65,7 +77,7 @@ export function renderPaymentSummary() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        cart: cart
+                        cart: cart.cartItems
                     })
                 });
     
@@ -77,6 +89,6 @@ export function renderPaymentSummary() {
                 console.log('Unexpected error. Try again later.');
             }
 
-            window.location.href('orders.html');
+            window.location.href = 'orders.html';
         });
 }

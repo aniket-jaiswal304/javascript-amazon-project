@@ -1,4 +1,4 @@
-class Cart {
+export default class Cart {
     cartItems;
     #localStorageKey;
 
@@ -83,7 +83,7 @@ class Cart {
     }
 }
 
-export function loadCart(renderCartGrid) {
+/*export function loadCart(renderCartGrid) {
     const xhr = new XMLHttpRequest();
   
     xhr.addEventListener('load', () => {
@@ -93,4 +93,8 @@ export function loadCart(renderCartGrid) {
   
     xhr.open('GET', 'https://supersimplebackend.dev/cart');
     xhr.send();
+}*/
+
+export function loadCart() {
+    return fetch('https://supersimplebackend.dev/cart');
   }

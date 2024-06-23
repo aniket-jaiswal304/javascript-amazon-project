@@ -6,16 +6,11 @@ import {loadCart} from '../data/cart.js';
 async function loadPage() {
     try {
         await loadProducts();
-
-        await new Promise((resolve) => {
-            loadCart(() => {
-                resolve();
-            });
-        });
+        await loadCart();
+        
     } catch(error) {
         console.log('Unexpected error. Please try again later.');
     }
-    
 
     renderOrderSummary();
     renderPaymentSummary();
