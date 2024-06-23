@@ -54,6 +54,19 @@ export default class Cart {
         }
     
         this.saveToStorage();
+
+        const addMessage = document.querySelector(`.js-added-to-cart${matchingItem.productId}`);
+        addMessage.classList.add('added-to-cart-visible');
+
+        let addedMessageTimeoutId;
+
+        if(addedMessageTimeoutId) {
+            clearTimeout(addedMessageTimeoutId);
+        }
+
+        addedMessageTimeoutId = setTimeout(() => {
+            addMessage.classList.remove('added-to-cart-visible');
+        }, 3000);
     }
 
     removeFromCart(productId) {
