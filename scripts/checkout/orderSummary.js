@@ -11,10 +11,10 @@ export function renderOrderSummary() {
     const cart = new Cart('cart');
 
     cart.cartItems.forEach((cartItem) => {
-        const productId = cartItem.productId;
+        const {productId} = cartItem;
         const matchingProduct = getProduct(productId);
 
-        const deliveryOptionId = cartItem.deliveryOptionId;
+        const {deliveryOptionId} = cartItem;
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
         const today = dayjs();
@@ -104,7 +104,7 @@ export function renderOrderSummary() {
     document.querySelectorAll('.js-delete-link')
         .forEach((link) => {
             link.addEventListener('click', () => {
-                const productId = link.dataset.productId;
+                const {productId} = link.dataset;
 
                 removeFromCart(productId);
 

@@ -46,8 +46,8 @@ export default class Cart {
         } else {
             this.cartItems.push(
                 {
-                    productId: productId,
-                    quantity: quantity,
+                    productId,
+                    quantity,
                     deliveryOptionId: '1'
                 }
             );
