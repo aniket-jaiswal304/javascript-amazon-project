@@ -1,3 +1,5 @@
+import { updateCartQuantity } from '../scripts/checkout.js';
+
 export default class Cart {
     cartItems;
     #localStorageKey;
@@ -84,6 +86,8 @@ export default class Cart {
         this.cartItems = newCart;
     
         this.saveToStorage();
+
+        updateCartQuantity();
     }
 
     updateDeliveryOption(productId, deliveryOptionId) {
@@ -98,6 +102,16 @@ export default class Cart {
         matchingItem.deliveryOptionId = deliveryOptionId;
     
         this.saveToStorage();
+    }
+
+    calculateCartQuantity() {
+        let cartQuantity = 0;
+
+        this.cartItems.forEach((cartItem) => {
+            cartQuantity += cartItem.quantity;
+        });
+
+        return cartQuantity;
     }
 }
 

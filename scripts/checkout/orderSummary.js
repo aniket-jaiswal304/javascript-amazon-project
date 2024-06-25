@@ -106,7 +106,7 @@ export function renderOrderSummary() {
             link.addEventListener('click', () => {
                 const {productId} = link.dataset;
 
-                removeFromCart(productId);
+                cart.removeFromCart(productId);
 
                 const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
