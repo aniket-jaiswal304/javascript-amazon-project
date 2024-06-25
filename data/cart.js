@@ -39,16 +39,12 @@ export default class Cart {
             }
         });
 
-        let quantity = 0;
+        let quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
         let addMessage;
-        if(!matchingItem) {
-            quantity = 1;
-        }
         
         if (matchingItem) {
-            quantity = Number(document.querySelector(`.js-quantity-selector-${matchingItem.productId}`).value);
             matchingItem.quantity += quantity;
-            addMessage = document.querySelector(`.js-added-to-cart${matchingItem.productId}`);
+            
         } else {
             this.cartItems.push(
                 {
@@ -57,8 +53,9 @@ export default class Cart {
                     deliveryOptionId: '1'
                 }
             );
-            addMessage = document.querySelector(`.js-added-to-cart${productId}`);
         }
+        
+        addMessage = document.querySelector(`.js-added-to-cart${productId}`);
     
         this.saveToStorage();
 
