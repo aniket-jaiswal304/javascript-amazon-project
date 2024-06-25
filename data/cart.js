@@ -113,6 +113,16 @@ export default class Cart {
 
         return cartQuantity;
     }
+
+    updateQuantity(productId, newQuantity) {
+        this.cartItems.forEach((cartItem) => {
+            if(cartItem.productId === productId) {
+                cartItem.quantity = newQuantity;
+            }
+        });
+
+        this.saveToStorage();
+    }
 }
 
 export function loadCart() {
