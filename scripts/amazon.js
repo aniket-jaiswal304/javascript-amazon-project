@@ -1,4 +1,4 @@
-import {products, loadProducts} from '../data/products.js';
+import { products, loadProducts } from '../data/products.js';
 import Cart from '../data/cart.js';
 
 loadProducts().then(() => {
@@ -62,10 +62,10 @@ function renderProductsGrid() {
             </div>
         `;
     });
-    
+
     document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-    function updateCartQuantity () {
+    function updateCartQuantity() {
         let cartQuantity = 0;
 
         cart.cartItems.forEach((cartItem) => {
@@ -79,11 +79,11 @@ function renderProductsGrid() {
     document.querySelectorAll('.js-add-to-cart')
         .forEach((button) => {
             button.addEventListener('click', () => {
-                const {productId} = button.dataset;
+                const { productId } = button.dataset;
 
                 cart.addToCart(productId);
                 updateCartQuantity();
-                
+
             });
         });
 }
