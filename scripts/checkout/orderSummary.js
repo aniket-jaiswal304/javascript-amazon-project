@@ -1,7 +1,6 @@
 import {getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption, calculateDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 import Cart from '../../data/cart.js';
 import { renderCheckoutHeader } from './checkoutHeader.js';
@@ -18,9 +17,7 @@ export function renderOrderSummary() {
         const {deliveryOptionId} = cartItem;
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-        const today = dayjs();
-        const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-        const dateString = deliveryDate.format('dddd, MMMM D');
+        const dateString = calculateDeliveryOption(deliveryOption);
 
         cartSummaryHTML += `
             <div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -76,9 +73,7 @@ export function renderOrderSummary() {
         let html = '';
 
         deliveryOptions.forEach((deliveryOption) => {
-            const today = dayjs();
-            const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-            const dateString = deliveryDate.format('dddd, MMMM D');
+            calculateDeliveryOption(deliveryOption);
 
             const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)} - `;
 
@@ -92,7 +87,7 @@ export function renderOrderSummary() {
                     name="delivery-option-${matchingProduct.id}">
                 <div>
                     <div class="delivery-option-date">
-                        ${dateString}
+                        ${calculateDeliveryOption(deliveryOption)}
                     </div>
                     <div class="delivery-option-price">
                         ${priceString} Shipping
