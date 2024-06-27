@@ -1,5 +1,3 @@
-import { updateCartQuantity } from '../scripts/checkout.js';
-
 export default class Cart {
     cartItems;
     #localStorageKey;
@@ -86,8 +84,6 @@ export default class Cart {
         this.cartItems = newCart;
     
         this.saveToStorage();
-
-        updateCartQuantity();
     }
 
     updateDeliveryOption(productId, deliveryOptionId) {

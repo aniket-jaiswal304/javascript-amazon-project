@@ -1,6 +1,7 @@
 import { renderOrderSummary } from './checkout/orderSummary.js';
 import { renderPaymentSummary } from './checkout/paymentSummary.js';
 import { loadProducts } from '../data/products.js';
+import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import Cart from '../data/cart.js';
 
 async function loadPage() {
@@ -12,17 +13,9 @@ async function loadPage() {
         console.log('Unexpected error. Please try again later.');
     }
 
-    updateCartQuantity();
+    renderCheckoutHeader();
     renderOrderSummary();
     renderPaymentSummary();
 }
 
 loadPage();
-
-export function updateCartQuantity() {
-    const cart = new Cart('cart');
-    const cartQuantity = cart.calculateCartQuantity();
-
-    document.querySelector('.js-return-to-home-link')
-        .innerHTML = `${cartQuantity} items`;
-}
