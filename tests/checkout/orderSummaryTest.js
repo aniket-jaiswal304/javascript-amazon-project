@@ -1,5 +1,5 @@
 import {renderOrderSummary} from '../../scripts/checkout/orderSummary.js';
-import {loadFromStorage, cart} from '../../data/cart.js';
+import {cart} from '../../data/cart.js';
 import {loadProducts} from '../data/products.js';
 
 describe('test suite: renderOrderSummary', () => {
@@ -34,7 +34,7 @@ describe('test suite: renderOrderSummary', () => {
                 }
             ]);
         });
-        loadFromStorage();
+        // loadFromStorage();
 
         renderOrderSummary();
     });

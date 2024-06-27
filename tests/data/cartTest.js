@@ -1,6 +1,7 @@
-import {addToCart, cart, loadFromStorage} from '../../data/cart.js';
+import Cart from '../../data/cart.js';
 
 describe('test suite: addToCart', () => {
+    const cart = new Cart('cart');
     it('adds an existing product to the cart', () => {
         spyOn(localStorage, 'setItem');
 
@@ -13,9 +14,9 @@ describe('test suite: addToCart', () => {
                 }
             ]);
         });
-        loadFromStorage();
+        // loadFromStorage();
 
-        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+        cart.addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
         expect(cart.length).toEqual(1);
         expect(localStorage.setItem).toHaveBeenCalledTimes(1);
         expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
@@ -28,9 +29,9 @@ describe('test suite: addToCart', () => {
         spyOn(localStorage, 'getItem').and.callFake(() => {
             return JSON.stringify([]);
         });
-        loadFromStorage();
+        // loadFromStorage();
 
-        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+        cart.addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
         expect(cart.length).toEqual(1);
         expect(localStorage.setItem).toHaveBeenCalledTimes(1);
         expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
