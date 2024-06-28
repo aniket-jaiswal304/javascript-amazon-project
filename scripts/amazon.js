@@ -1,5 +1,5 @@
 import { products, loadProducts } from '../data/products.js';
-import Cart from '../data/cart.js';
+import { cart } from '../data/cart.js';
 
 loadProducts().then(() => {
     renderProductsGrid();
@@ -7,7 +7,6 @@ loadProducts().then(() => {
 
 function renderProductsGrid() {
     let productsHTML = '';
-    const cart = new Cart('cart');
 
     products.forEach((product) => {
         productsHTML += `

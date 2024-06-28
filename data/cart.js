@@ -1,4 +1,4 @@
-export default class Cart {
+class Cart {
     cartItems;
     #localStorageKey;
 
@@ -121,6 +121,11 @@ export default class Cart {
     }
 }
 
-export function loadCart() {
-    return fetch('https://supersimplebackend.dev/cart');
+export const cart = new Cart('cart');
+
+export async function loadCart() {
+    const response = await fetch('https://supersimplebackend.dev/cart');
+    const responseText = await response.text();
+
+    return responseText;
   }

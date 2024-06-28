@@ -2,13 +2,11 @@ import {getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption, calculateDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
-import Cart from '../../data/cart.js';
+import { cart } from '../../data/cart.js';
 import { renderCheckoutHeader } from './checkoutHeader.js';
 
 export function renderOrderSummary() {
     let cartSummaryHTML = '';
-
-    const cart = new Cart('cart');
 
     cart.cartItems.forEach((cartItem) => {
         const {productId} = cartItem;

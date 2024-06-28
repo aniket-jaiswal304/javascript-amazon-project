@@ -7,8 +7,11 @@ import { loadCart } from '../data/cart.js';
 async function loadPage() {
 
     try {
-        await loadProducts();
-        await loadCart();
+
+        await Promise.all([
+            loadProducts(), 
+            loadCart()
+        ]);
 
     } catch (error) {
         console.log('Unexpected error. Please try again later.');

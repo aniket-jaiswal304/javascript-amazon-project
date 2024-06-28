@@ -1,7 +1,6 @@
-import Cart from '../../data/cart.js';
+import { cart } from '../../data/cart.js';
 
 export function renderCheckoutHeader() {
-    const cart = new Cart('cart');
 
     document.querySelector('.js-checkout-header')
         .innerHTML = `
