@@ -128,4 +128,8 @@ export async function loadCart() {
     const responseText = await response.text();
 
     return responseText;
-  }
+}
+
+export function resetCart() {
+    cart = [];
+}
