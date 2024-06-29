@@ -108,6 +108,11 @@ class Cart {
 
         this.saveToStorage();
     }
+
+    resetCart() {
+        this.cartItems = [];
+        this.saveToStorage();
+    }
 }
 
 export const cart = new Cart('cart');
@@ -117,9 +122,4 @@ export async function loadCart() {
     const responseText = await response.text();
 
     return responseText;
-}
-
-export function resetCart() {
-    cart.cartItems = [];
-    cart.saveToStorage();
 }
