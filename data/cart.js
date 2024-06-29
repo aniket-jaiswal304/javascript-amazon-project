@@ -121,5 +121,5 @@ export async function loadCart() {
 
 export function resetCart() {
     cart.cartItems = [];
-    saveToStorage();
+    cart.saveToStorage();
 }

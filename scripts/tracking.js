@@ -16,7 +16,7 @@ async function loadPage() {
     let productDetails;
 
     order.products.forEach((details) => {
-        if(details.productId === productId) {
+        if (details.productId === productId) {
             productDetails = details;
         }
     });
@@ -24,7 +24,7 @@ async function loadPage() {
     const today = dayjs();
     const orderTime = dayjs(order.orderTime);
     const deliveryTime = dayjs(productDetails.estimatedDeliveryTime);
-    
+
     const percentProgress = ((today - orderTime) / (deliveryTime - orderTime)) * 100;
 
     const deliveredMessage = today < deliveryTime ? 'Arriving on' : 'Delivered on';
@@ -64,7 +64,7 @@ async function loadPage() {
         </div>
 
         <div class="progress-bar-container">
-            <div class="progress-bar style="width: ${percentProgress}%;"></div>
+            <div class="progress-bar" style="width: ${percentProgress}%;"></div>
         </div>
     `;
 
