@@ -120,6 +120,6 @@ export async function loadCart() {
 }
 
 export function resetCart() {
-    cart = [];
+    cart.cartItems = [];
     saveToStorage();
 }

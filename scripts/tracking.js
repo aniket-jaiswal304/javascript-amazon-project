@@ -1,6 +1,7 @@
 import { getProduct, loadProducts } from '../data/products.js';
 import { getOrder } from './orders.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { cart } from '../data/cart.js';
 
 async function loadPage() {
     await loadProducts();
@@ -69,6 +70,10 @@ async function loadPage() {
 
     document.querySelector('.js-order-tracking')
         .innerHTML = trackingHTML;
+
+    const cartQuantity = cart.calculateCartQuantity();
+    document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity > 0 ? cartQuantity : '';
 }
 
 loadPage();

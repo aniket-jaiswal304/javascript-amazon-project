@@ -87,7 +87,7 @@ function renderProductsGrid() {
         const cartQuantity = cart.calculateCartQuantity();
 
         document.querySelector('.js-cart-quantity')
-            .innerHTML = cartQuantity;
+            .innerHTML = cartQuantity > 0 ? cartQuantity : '';
     }
 
     updateCartQuantity();
