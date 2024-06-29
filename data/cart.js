@@ -19,7 +19,7 @@ class Cart {
         localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
-    addToCart(productId) {
+    addToCart(productId, quantity) {
         let matchingItem;
     
         this.cartItems.forEach((cartItem) => {
@@ -28,9 +28,6 @@ class Cart {
             }
         });
 
-        let quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-        let addMessage;
-        
         if (matchingItem) {
             matchingItem.quantity += quantity;
             
@@ -44,21 +41,7 @@ class Cart {
             );
         }
         
-        addMessage = document.querySelector(`.js-added-to-cart${productId}`);
-    
         this.saveToStorage();
-
-        addMessage.classList.add('added-to-cart-visible');
-
-        let addedMessageTimeoutId;
-
-        if(addedMessageTimeoutId) {
-            clearTimeout(addedMessageTimeoutId);
-        }
-
-        addedMessageTimeoutId = setTimeout(() => {
-            addMessage.classList.remove('added-to-cart-visible');
-        }, 3000);
     }
 
     removeFromCart(productId) {

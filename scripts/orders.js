@@ -46,7 +46,7 @@ async function loadPage() {
     document.querySelectorAll('.js-buy-again')
         .forEach((button) => {
             button.addEventListener('click', () => {
-                cart.addToCart(button.dataset.productId);
+                cart.addToCart(button.dataset.productId, Number(button.dataset.quantity));
         
                 button.innerHTML = 'Added';
 
@@ -62,6 +62,10 @@ async function loadPage() {
                         <span class="buy-again-message">Buy it again</span>
                     `;
                 }, 1000);
+
+                const cartQuantity = cart.calculateCartQuantity();
+                document.querySelector('.js-cart-quantity')
+                    .innerHTML = cartQuantity > 0 ? cartQuantity : '';
             });
         });
 
@@ -108,7 +112,7 @@ function productListHTML(order) {
                     Quantity&#58; ${productDetails.quantity}
                 </div>
                 <button class="buy-again-button button-primary js-buy-again"
-                    data-product-id="${product.id}">
+                    data-product-id="${product.id}" data-quantity="${productDetails.quantity}">
                     <img class="buy-again-icon" src="images/icons/buy-again.png">
                     <span class="buy-again-message">Buy it again</span>
                 </button>

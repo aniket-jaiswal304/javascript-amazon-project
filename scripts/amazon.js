@@ -97,7 +97,25 @@ function renderProductsGrid() {
             button.addEventListener('click', () => {
                 const { productId } = button.dataset;
 
-                cart.addToCart(productId);
+                let quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+                cart.addToCart(productId, quantity);
+
+                let addMessage;
+        
+                addMessage = document.querySelector(`.js-added-to-cart${productId}`);
+
+                addMessage.classList.add('added-to-cart-visible');
+
+                let addedMessageTimeoutId;
+
+                if(addedMessageTimeoutId) {
+                    clearTimeout(addedMessageTimeoutId);
+                }
+
+                addedMessageTimeoutId = setTimeout(() => {
+                    addMessage.classList.remove('added-to-cart-visible');
+                }, 3000);
+
                 updateCartQuantity();
 
             });
